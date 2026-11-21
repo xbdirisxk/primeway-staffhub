@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# Block commits made directly on main. Work on a branch and merge through a pull request.
+branch="$(git rev-parse --abbrev-ref HEAD)"
+if [ "$branch" = "main" ]; then
+  echo ""
+  echo "  Direct commits to main are blocked."
+  echo "  Create a branch first, for example:  git switch -c feat/your-change"
+  echo ""
+  exit 1
+fi

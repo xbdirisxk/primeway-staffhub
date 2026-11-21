@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Block pushes to main from this machine. Changes reach main only through a pull request on GitHub.
+while read -r local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    echo ""
+    echo "  Pushing to main is blocked. Push your branch and open a pull request instead."
+    echo ""
+    exit 1
+  fi
+done
+exit 0
